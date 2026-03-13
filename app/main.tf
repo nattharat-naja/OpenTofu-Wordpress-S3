@@ -16,6 +16,7 @@ resource "aws_instance" "app_instance" {
   vpc_security_group_ids      = [var.app_security_group_id]
   associate_public_ip_address = true
   iam_instance_profile        = var.instance_profile_name
+  key_name                    = "IAC"
 
   user_data = <<-EOF
 #!/bin/bash
