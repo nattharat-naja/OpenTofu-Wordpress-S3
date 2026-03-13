@@ -18,6 +18,69 @@ This project deploys a highly available WordPress infrastructure on AWS using Op
 - An AWS account with permissions to create VPC, EC2, RDS, S3, and IAM resources
 - An EC2 key pair named "IAC" in your AWS region
 
+## 🔐 AWS Authentication Setup
+
+OpenTofu needs AWS credentials to manage your infrastructure. Choose one of these methods:
+
+### Method 1: AWS CLI Configuration (Recommended)
+
+1. Install AWS CLI if not already installed:
+   - Windows: Download from [AWS CLI installer](https://aws.amazon.com/cli/)
+   - Or use: `winget install Amazon.AWSCLI`
+
+2. Configure your credentials:
+```bash
+aws configure
+```
+
+Enter your:
+- AWS Access Key ID
+- AWS Secret Access Key
+- Default region (e.g., `us-west-1`)
+- Default output format (e.g., `json`)
+
+### Method 2: Environment Variables
+
+Set these environment variables in your terminal:
+
+**Windows (CMD):**
+```cmd
+set AWS_ACCESS_KEY_ID=your-access-key
+set AWS_SECRET_ACCESS_KEY=your-secret-key
+set AWS_DEFAULT_REGION=us-west-1
+```
+
+**Windows (PowerShell):**
+```powershell
+$env:AWS_ACCESS_KEY_ID="your-access-key"
+$env:AWS_SECRET_ACCESS_KEY="your-secret-key"
+$env:AWS_DEFAULT_REGION="us-west-1"
+```
+
+### Method 3: Shared Credentials File
+
+Create or edit `~/.aws/credentials`:
+```ini
+[default]
+aws_access_key_id = your-access-key
+aws_secret_access_key = your-secret-key
+```
+
+And `~/.aws/config`:
+```ini
+[default]
+region = us-west-1
+```
+
+### Verify Connection
+
+Test your AWS connection:
+```bash
+aws sts get-caller-identity
+```
+
+You should see your AWS account details if configured correctly.
+
 ## 📁 Project Structure
 
 ```
